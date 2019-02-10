@@ -3,10 +3,19 @@ $(document).ready(function(){
     // $('#datepicker').datepicker();
     $("#firstName").focusout(function(){
         const firstNameInputValue = $(this).val();
+        const hasNumber = /\d/;
         if(firstNameInputValue ==''){
             $(this).addClass('is-invalid');
-                $('#submit').attr('disabled',true);
-                 $("#error_firstName").text("* Enter your first name!");
+            $('#submit').attr('disabled',true);
+            $("#error_firstName").text("* Enter your first name!");
+        } else if(firstNameInputValue.length < 3){
+            $(this).addClass('is-invalid');
+            $('#submit').attr('disabled',true);
+            $("#error_firstName").text("* First name should contain at least 3 characters!");
+        } else if(hasNumber.test(firstNameInputValue) == true){
+            $(this).addClass('is-invalid');
+            $('#submit').attr('disabled',true);
+            $("#error_firstName").text("* First name should not contain numbers!");
         } else {
             $(this).addClass('is-valid');
             $(this).removeClass('is-invalid');
@@ -16,10 +25,19 @@ $(document).ready(function(){
    });
     $("#lastName").focusout(function(){
         const lastNameInputValue = $(this).val();
+        const hasNumber = /\d/;
         if(lastNameInputValue =='') {
             $(this).addClass('is-invalid');
                 $('#submit').attr('disabled',true);
                 $("#error_lastName").text("* Enter your last name!");
+        } else if(lastNameInputValue.length < 3 ){
+            $(this).addClass('is-invalid');
+            $('#submit').attr('disabled',true);
+            $("#error_lastName").text("* Last name should contain at least 3 characters!");
+        } else if(hasNumber.test(lastNameInputValue) == true){
+                $(this).addClass('is-invalid');
+                $('#submit').attr('disabled',true);
+                $("#error_lastName").text("* Last name should not contain numbers!");
         } else {
             $(this).addClass('is-valid');
             $(this).removeClass('is-invalid');
@@ -91,5 +109,9 @@ $(document).ready(function(){
             $('#submit').attr('disabled',false);
             $("#error_datepicker").text("");
         }
+   });
+   $("#submit").on('click', function(){
+       console.log('working');
+       alert("Thank you " + firstNameInputValue);
    });
 });
