@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>"Javascript"</title>
-	<link rel="stylesheet" type="text/css" href="datepicker.css">
+	<link rel="stylesheet" type="text/css" href="registrationForm.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bowlby+One">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Permanent+Marker">
@@ -18,23 +18,29 @@
 				<h1 class="heading">Registration Form</h1>
 				<form>
 					<div class="form-group">
-						<label for="firstname">First name:</label>
-						<input type="text" class="form-control" id="firstname">
+						<label for="firstName">First name:</label>
+						<input type="text" class="form-control" id="firstName">
+						<span id="error_firstName" class="invalid-feedback"></span>
 					</div>
 					<div class="form-group">
-						<label for="lastname">Last name:</label>
-						<input type="text" class="form-control" id="lastname">
+						<label for="lastName">Last name:</label>
+						<input type="text" class="form-control" id="lastName">
+						<span id="error_lastName" class="invalid-feedback"></span>
 					</div>
 					<div class="form-group">
 						<label for="email">Email address:</label>
-						<input type="email" class="form-control" id="email">
+						<input type="email" class="form-control" id="email" placeholder="Example 123Ab@gmail.com">
+						<span id="error_email" class="invalid-feedback"></span>
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password:</label>
 						<input type="password" class="form-control" id="pwd">
+						<span id="error_pwd" class="invalid-feedback"></span>
+						<small id="pwdHelp" class="form-text text-muted">Password should contain minimum 6 characters.</small>
 					</div>
-					<div class="input-group mb-3"> 
-						<p> Date of Birth: <input type="text" class="form-control" id="datepicker" placeholder="MM/DD/YYYY"/></p>		
+					<div class="input-group mb-3">	
+						<p> Date of birth: <br><input id="datepicker" data-provide="datepicker" placeholder="MM/DD/YYYY"></br></p>
+						<span id="error_datepicker" class="invalid-feedback"></span>		
                     </div>
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>
@@ -49,6 +55,6 @@
 <!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<script src="datepicker.js"></script>
+<script src="registrationForm.js"></script>
 </body>
 </html>
