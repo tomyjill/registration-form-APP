@@ -99,16 +99,16 @@ $(document).ready(function(){
    });
    $("#submit").on('click', function() {
        const isValidClasses = $(document).find('.is-valid');
+       const isInvalidClasses = $(document).find('.is-invalid');
+
        const firstName = document.getElementById("firstName").value;
        const lastName = document.getElementById("lastName").value;
-       console.log(isValidClasses.length);
-    if (isValidClasses.length <5) {
-        alert('Please fill in the form correctly!');
-        return false;   
-    } else if (isValidClasses.length == 5) {
+       console.log(isInvalidClasses.length);
+    if (isValidClasses.length < 5 || isInvalidClasses.length !== 0 ) {
+        alert('Please fill in the form correctly!');   
+    } else if (isValidClasses.length == 5 && isInvalidClasses.length == 0) {
         $('#submit').attr('disabled', false);
         alert("Thank you " + firstName + ' ' + lastName);
-        return true; 
     }
    });
 });
