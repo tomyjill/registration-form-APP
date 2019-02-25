@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('#submit').attr('disabled', true);
 
     // $('#datepicker').datepicker();
     $("#firstName").focusout(function(){
@@ -6,15 +7,12 @@ $(document).ready(function(){
         const hasNumber = /\d/;
         if(firstNameInputValue ==''){
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_firstName").text("* Enter your first name!");
         } else if(firstNameInputValue.length < 3){
-            $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
+            $(this).addClass('is-invalid');   
             $("#error_firstName").text("* First name should contain at least 3 characters!");
         } else if(hasNumber.test(firstNameInputValue) == true){
-            $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
+            $(this).addClass('is-invalid');    
             $("#error_firstName").text("* First name should not contain numbers!");
         } else {
             $(this).addClass('is-valid');
@@ -27,17 +25,14 @@ $(document).ready(function(){
         const lastNameInputValue = $(this).val();
         const hasNumber = /\d/;
         if(lastNameInputValue =='') {
-            $(this).addClass('is-invalid');
-                $('#submit').attr('disabled',true);
-                $("#error_lastName").text("* Enter your last name!");
+            $(this).addClass('is-invalid');        
+            $("#error_lastName").text("* Enter your last name!");
         } else if(lastNameInputValue.length < 3 ){
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_lastName").text("* Last name should contain at least 3 characters!");
         } else if(hasNumber.test(lastNameInputValue) == true){
-                $(this).addClass('is-invalid');
-                $('#submit').attr('disabled',true);
-                $("#error_lastName").text("* Last name should not contain numbers!");
+            $(this).addClass('is-invalid');
+            $("#error_lastName").text("* Last name should not contain numbers!");
         } else {
             $(this).addClass('is-valid');
             $(this).removeClass('is-invalid');
@@ -50,19 +45,15 @@ $(document).ready(function(){
         const emailInputValue = $(this).val();
         if (emailInputValue == '') {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_email").text("* Enter your email!");
         } else if(emailInputValue.length < 5) {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_email").text("* Email should contain at least 5 characters!");
         } else if(!emailInputValue.includes('@')) {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_email").text("* Email should contain @");
         } else if (!emailInputValue.includes('.')) {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_email").text("* Email should contain .");
         } else {
             $(this).addClass('is-valid');
@@ -77,16 +68,13 @@ $(document).ready(function(){
         //console.log('working');
         if(pwdInputValue =='') {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_pwd").text("* Enter your password!");
         } else if(pwdInputValue.length < 6) {   
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#pwdHelp").removeClass('text-muted');
             $("#pwdHelp").addClass('text-danger');
         } else if(hasNumber.test(pwdInputValue) == false) {
             $(this).addClass('is-invalid');
-            $('#submit').attr('disabled',true);
             $("#error_pwd").text("* Password should include numbers!");  
         } else {
             $(this).addClass('is-valid');
@@ -101,8 +89,7 @@ $(document).ready(function(){
         console.log(dateInputValue);
         if(dateInputValue == '') {
             $(this).addClass('is-invalid');
-                $('#submit').attr('disabled',true);
-                $("#error_datepicker").text("* Enter your date of birth!");
+            $("#error_datepicker").text("* Enter your date of birth!");
         } else {
             $(this).addClass('is-valid');
             $(this).removeClass('is-invalid');
@@ -110,8 +97,18 @@ $(document).ready(function(){
             $("#error_datepicker").text("");
         }
    });
-   $("#submit").on('click', function(){
-       console.log('working');
-       alert("Thank you " + firstNameInputValue);
+   $("#submit").on('click', function() {
+       const isValidClasses = $(document).find('.is-valid');
+       const firstName = document.getElementById("firstName").value;
+       const lastName = document.getElementById("lastName").value;
+       console.log(isValidClasses.length);
+    if (isValidClasses.length <5) {
+        alert('Please fill in the form correctly!');
+        return false;   
+    } else if (isValidClasses.length == 5) {
+        $('#submit').attr('disabled', false);
+        alert("Thank you " + firstName + ' ' + lastName);
+        return true; 
+    }
    });
 });
