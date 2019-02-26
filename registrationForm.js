@@ -43,18 +43,16 @@ $(document).ready(function(){
    $("#email").focusout(function(){
        //console.log('working'); 
         const emailInputValue = $(this).val();
+        const emailIsValid = /\S+@\S+\.\S+/.test(emailInputValue)
         if (emailInputValue == '') {
             $(this).addClass('is-invalid');
             $("#error_email").text("* Enter your email!");
         } else if(emailInputValue.length < 5) {
             $(this).addClass('is-invalid');
             $("#error_email").text("* Email should contain at least 5 characters!");
-        } else if(!emailInputValue.includes('@')) {
+        } else if(emailIsValid == false) {
             $(this).addClass('is-invalid');
-            $("#error_email").text("* Email should contain @");
-        } else if (!emailInputValue.includes('.')) {
-            $(this).addClass('is-invalid');
-            $("#error_email").text("* Email should contain .");
+            $("#error_email").text("* Enter a valid email!");
         } else {
             $(this).addClass('is-valid');
             $(this).removeClass('is-invalid');
@@ -100,7 +98,6 @@ $(document).ready(function(){
    $("#submit").on('click', function() {
        const isValidClasses = $(document).find('.is-valid');
        const isInvalidClasses = $(document).find('.is-invalid');
-
        const firstName = document.getElementById("firstName").value;
        const lastName = document.getElementById("lastName").value;
        console.log(isInvalidClasses.length);
