@@ -98,8 +98,8 @@ $(document).ready(function(){
    $("#submit").on('click', function() {
        const isValidClasses = $(document).find('.is-valid');
        const isInvalidClasses = $(document).find('.is-invalid');
-       const firstName = document.getElementById("firstName").value;
-       const lastName = document.getElementById("lastName").value;
+       const firstName = $('#firstName').val();
+       const lastName = $("#lastName").val();
        console.log(isInvalidClasses.length);
     if (isValidClasses.length < 5 || isInvalidClasses.length !== 0 ) {
         alert('Please fill in the form correctly!');   
